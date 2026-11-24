@@ -1,30 +1,33 @@
-# Conservación de la cantidad de movimiento · Simulador interactivo
+# Conservación del momentum — simulador entre paredes
 
-Aplicación docente de **Francisco Goitia** · francisco.goitia@upc.edu.
+**Francisco Goitia** · francisco.goitia@upc.edu
 
-## Ejecutar
+Aplicación docente de movimiento unidimensional: dos esferas colisionan entre sí y rebotan contra dos paredes fijas. Interfaz clara, con controles mínimos para introducir masa y velocidad inicial.
 
-- **En línea:** [GitHub Pages](https://fragoi95.github.io/momentum_animacion/) (una vez habilitado en el repositorio).
-- **Sin conexión:** descarga `index.html` y ábrelo en Chrome, Edge o Firefox. No se requieren bibliotecas, servidores ni conexión a internet.
+## Abrir la aplicación
 
-## Contenido
+- **Online:** https://fragoi95.github.io/momentum_animacion/ (si GitHub Pages está activado).
+- **Sin internet:** descargar `index.html` y abrirlo directamente con Chrome o Edge.
 
-Simula un **choque frontal unidimensional entre dos esferas** sobre una pista ideal, sin rozamiento y sin fuerzas externas durante el choque. Es una introducción deliberadamente más simple que un péndulo de Newton, para separar la conservación de la cantidad de movimiento de la conversión entre energía gravitatoria y cinética.
+No depende de bibliotecas externas.
 
-Se pueden modificar las masas `m_A`, `m_B` (0,2–10 kg), las velocidades iniciales `u_A`, `u_B` (−5 a 5 m/s) y el coeficiente de restitución `e` (0–1). Incluye ejemplos preestablecidos, reproducción y pausa, velocidades de reproducción, retroceso a antes/después del impacto y barra temporal. Calcula las velocidades finales y los balances de momento lineal y energía cinética.
+## Controles
 
-El modelo usa la conservación de cantidad de movimiento y la relación de restitución:
+- Masa y velocidad inicial de las esferas A y B.
+- Iniciar, pausar y reiniciar la animación.
+- Velocidad de reproducción 0,5×, 1× o 2×.
+- Lectura en tiempo real de momento lineal de A y B, momento de las dos esferas y energía cinética total.
 
-```text
-p = mA*uA + mB*uB
-vA = (p - mB*e*(uA-uB)) / (mA+mB)
-vB = (p + mA*e*(uA-uB)) / (mA+mB)
-```
+## Modelo físico
 
-Las ecuaciones de choque se aplican únicamente si `uA > uB` (A comienza a la izquierda de B y lo alcanza). Cuando no hay contacto, ambas mantienen sus velocidades. El instante de impacto y las posiciones se calculan analíticamente para evitar errores numéricos de integración.
+- Se considera movimiento unidimensional horizontal, sin rozamiento.
+- Todos los choques entre esferas son perfectamente elásticos, con `e=1`.
+- Las paredes se consideran inmóviles, con rebote perfectamente elástico.
+- En un choque entre esferas se conserva el momento lineal y la energía cinética del par.
+- **Al impactar una esfera contra una pared, la pared ejerce un impulso externo sobre las esferas.** Por tanto, el momento de las dos esferas no se conserva a través de ese impacto. Si se incluye la pared y su soporte en el sistema, el impulso tiene la correspondiente reacción externa.
 
-Para `e = 1` se conserva también la energía cinética. Para `e < 1` existe disipación energética, y cuando `e = 0` las dos esferas continúan con una misma velocidad inmediatamente después del choque, sin representar explícitamente la deformación de contacto. Los radios dibujados varían aproximadamente con la raíz cúbica de la masa para mejorar la lectura; no representan un material con densidad prefijada.
+Los tamaños dibujados de las esferas son iguales independientemente de sus masas, para facilitar la comparación.
 
-## Publicación en GitHub Pages
+## GitHub Pages
 
-En **Settings → Pages → Build and deployment**, selecciona `Deploy from a branch`, rama `main` y carpeta `/(root)`, y guarda. La dirección será <https://fragoi95.github.io/momentum_animacion/> una vez completada la publicación.
+En Settings → Pages seleccionar Deploy from a branch, rama main y carpeta /(root). Los cambios de `index.html` se publican automáticamente.
