@@ -3,149 +3,168 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#091826">
-<meta name="description" content="Simulador interactivo de conservación de cantidad de movimiento en colisiones unidimensionales. Francisco Goitia · UPC.">
-<title>Conservación de la cantidad de movimiento · Francisco Goitia</title>
+<meta name="theme-color" content="#f7f9fc">
+<meta name="description" content="Laboratorio interactivo sobre cantidad de movimiento y choques unidimensionales entre dos esferas y dos paredes.">
+<title>Conservación del momentum | Francisco Goitia</title>
 <style>
-:root{color-scheme:dark;--bg:#081725;--panel:#10283b;--panel2:#0b2132;--line:#27475b;--text:#eaf6fc;--muted:#a5c0cf;--a:#4fcaeb;--b:#ffbd6f;--ok:#70e1ba;--red:#ff8f9e;--shadow:0 16px 34px #030c1670}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 65% -10%,#183c55 0,transparent 50%),radial-gradient(ellipse at 0 70%,#0c2c3a 0,transparent 48%),var(--bg);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);font-size:14px;line-height:1.45}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid #98e6f9;outline-offset:3px}.shell{width:min(1510px,calc(100% - 36px));margin:27px auto 46px}.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;color:#a7cedf;font-size:12px}.tag{font-size:10px;letter-spacing:1.6px;text-transform:uppercase;font-weight:800;color:#8fc1d9}.byline{color:#d5e7f1}.byline a{color:#97dff4;text-decoration:none}.byline a:hover{text-decoration:underline}h1{font-size:clamp(25px,3vw,38px);letter-spacing:-.85px;margin:14px 0 6px;font-weight:780;line-height:1.15}.intro{margin:0 0 20px;color:var(--muted);font-size:14px;max-width:900px}.workspace{display:grid;grid-template-columns:minmax(290px,335px) minmax(0,1fr);align-items:start;gap:16px}.side,.main{min-width:0}.panel{background:linear-gradient(160deg,#122c40,#0e2233);border:1px solid #29495e;border-radius:16px;box-shadow:var(--shadow)}.side{padding:19px 18px}.panel-title{display:flex;align-items:center;gap:10px;justify-content:space-between;margin-bottom:14px}.panel-title h2{font-size:16px;margin:0;font-weight:750}.muted{color:var(--muted)}.micro{font-size:11px;color:var(--muted)}.label-inline{display:flex;gap:8px;align-items:center;font-size:12px;font-weight:700}.ball-dot{display:inline-block;width:11px;height:11px;border-radius:100%;background:var(--a);box-shadow:0 0 9px #48bade50}.ball-dot.b{background:var(--b);box-shadow:0 0 9px #ffc47050}.control-group{background:#0c2131;border:1px solid #27465a;border-radius:13px;padding:12px 12px 7px;margin:13px 0}.grouphead{font-weight:780;font-size:13px;display:flex;align-items:center;gap:7px;margin-bottom:11px}.groupdesc{color:#91adbf;font-size:11px;margin:-7px 0 10px}.control{margin:12px 0 13px}.control:first-child{margin-top:3px}.control-head{display:flex;align-items:center;justify-content:space-between;gap:8px}.control-head label{font-size:12px;color:#c9dfeb;white-space:nowrap}.valbox{display:inline-flex;align-items:center;gap:4px}.valbox input{width:76px;background:#081a29;color:#e8f5ff;text-align:right;border-radius:8px;border:1px solid #355b71;padding:6px 7px;font-variant-numeric:tabular-nums}.unit{font-size:10px;color:#8faaba;min-width:22px}.range{width:100%;margin:8px 0 0;accent-color:var(--a);height:6px;cursor:pointer}.orange .range{accent-color:var(--b)}.range-note{display:flex;justify-content:space-between;color:#7e9cae;font-size:10px;margin-top:1px}.presets{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:7px}.presets button{border-radius:9px;color:#c5dfed;background:#183449;border:1px solid #31526a;font-size:11px;padding:9px 7px;min-height:36px}.presets button:hover,.presets button:focus-visible{background:#244d65}.rest{margin-top:17px}.rest-head{display:flex;align-items:center;justify-content:space-between;gap:8px}.rest-head h3{font-size:13px;margin:0}.eqmode{font-size:11px;color:#e8d19a;background:#3a30261f;border:1px solid #756147;border-radius:30px;padding:3px 8px}.restdesc{margin:8px 0 0;color:var(--muted);font-size:11px}.main{display:grid;gap:14px}.stage{overflow:hidden}.stage-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:17px 19px 8px}.stage-head h2{margin:0;font-size:16px}.stage-head p{font-size:12px;color:var(--muted);margin:4px 0 0}.status{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:750;letter-spacing:.2px;border:1px solid #315569;border-radius:30px;background:#15384a;color:#bfedfa;padding:7px 11px}.status::before{content:"";width:7px;height:7px;border-radius:50%;background:#70d5ed}.status.after{background:#163b34;border-color:#37745d;color:#b9f5d3}.status.after::before{background:#70e1ba}.status.no{background:#342c2a;border-color:#6a534e;color:#f5d3ae}.status.no::before{background:#ffbd6f}.arena{position:relative;margin:8px 14px 0;border:1px solid #31546b;border-radius:14px;overflow:hidden;background:radial-gradient(ellipse at 48% 36%,#1e4257 0%,#102a3e 54%,#081827 100%)}.arena svg{display:block;width:100%;height:auto;max-height:410px;min-height:230px}.arenalabel{position:absolute;top:12px;left:14px;font-size:10px;letter-spacing:1px;color:#9abed1;text-transform:uppercase;font-weight:750}.arenaright{position:absolute;top:12px;right:12px;display:flex;align-items:center;gap:6px;color:#aec9d8;font-size:10px}.arena-note{position:absolute;bottom:9px;left:14px;right:14px;font-size:11px;color:#a9c6d6}.arena-note strong{color:#e0f4fc}.stagecontrols{padding:13px 18px 14px}.buttonbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.btn{padding:9px 13px;border-radius:10px;border:1px solid #34556b;background:#1a3a50;color:#d8eefa;font-size:12px;font-weight:700;min-height:39px}.btn:hover{background:#2a526b}.btn.primary{background:#245c76;border:1px solid #58b9da;color:#f6fcff}.btn.primary:hover{background:#2e7795}.btn:disabled{opacity:.45;cursor:not-allowed}.timebar{margin-top:13px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}.timebar .range{margin:0}.timer{font-variant-numeric:tabular-nums;font-size:12px;color:#bbd8e7;white-space:nowrap}.speedselect{border:1px solid #355b71;border-radius:9px;background:#132d40;color:#d5f0fa;padding:8px 9px;font-size:12px}.stagefoot{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;padding:0 18px 18px}.kv{min-width:0;padding:10px 12px;background:#0b2132;border:1px solid #28485d;border-radius:11px}.kv .key{font-size:11px;color:#a3bfce}.kv .num{font-size:21px;font-weight:790;letter-spacing:-.4px;margin-top:2px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.kv .num.a{color:var(--a)}.kv .num.b{color:var(--b)}.kv .num.c{color:var(--ok)}.kv small{font-size:10px;color:#99b9cb;font-weight:400}.info{display:grid;grid-template-columns:1.04fr .96fr;gap:14px}.info .panel{padding:16px 17px}.info h3{font-size:14px;margin:0 0 10px}.tablest{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}.tablest th,.tablest td{padding:8px 5px;border-bottom:1px solid #2a465a;text-align:right;white-space:nowrap}.tablest th:first-child,.tablest td:first-child{text-align:left}.tablest thead th{font-size:10px;color:#a6c7d8;letter-spacing:.2px}.tablest tbody td{font-size:12px}.tablest tr.last td{font-weight:790;color:#bff0da;border-bottom:0}.tablehead{display:inline-flex;gap:6px;align-items:center}.mini-dot{width:7px;height:7px;border-radius:50%;background:var(--a);display:inline-block}.mini-dot.b{background:var(--b)}.balances{display:grid;gap:10px}.balance-row{display:grid;grid-template-columns:1fr auto;gap:5px;font-size:12px}.balance-row .key{color:#accbd9}.balance-row strong{font-variant-numeric:tabular-nums;font-weight:700}.bartrack{height:9px;background:#071724;border-radius:50px;overflow:hidden;border:1px solid #33516a;grid-column:1/-1}.barfill{height:100%;width:0%;border-radius:50px;background:linear-gradient(90deg,#398aa7,#78d5f3);transition:width .18s ease}.barfill.energy{background:linear-gradient(90deg,#d7a354,#f7cf85)}.barfill.loss{background:linear-gradient(90deg,#b37e48,#f1aa6b)}.resultnote{font-size:11px;color:#afd3c2;border-top:1px solid #315365;margin:12px 0 0;padding-top:10px}.derivation{margin-top:14px;padding:14px 18px}.derivation summary{font-size:13px;font-weight:750;cursor:pointer}.formula{margin-top:10px;font:15px Cambria,"Times New Roman",serif;color:#d5edfc;overflow-x:auto;white-space:nowrap}.formula strong{color:var(--ok)}.explain{font-size:11px;color:#aec6d4}.footer{color:#91aebe;font-size:11px;padding:15px 2px 0;line-height:1.7}.footer strong{color:#cce5f2}.sr{position:absolute;clip:rect(0 0 0 0);width:1px;height:1px;overflow:hidden}
-@media(max-width:1100px){.workspace{grid-template-columns:minmax(250px,295px) minmax(0,1fr)}.info{grid-template-columns:1fr}.arena svg{min-height:210px}}@media(max-width:780px){.shell{width:min(680px,calc(100% - 20px));margin-top:18px}.workspace{grid-template-columns:1fr}.side{order:1}.main{order:0}.info{grid-template-columns:1fr 1fr}.control-group{display:grid;grid-template-columns:1fr 1fr;gap:0 13px}.control-group .grouphead,.control-group .groupdesc{grid-column:1/-1}}@media(max-width:580px){.topline{align-items:flex-start}.intro{font-size:12px}.stage-head{padding:14px 13px 7px}.arena{margin:8px 7px 0}.arena svg{min-height:195px}.stagecontrols{padding:11px}.stagefoot{gap:5px;padding:0 10px 12px}.kv{padding:8px 7px}.kv .num{font-size:17px}.kv .key{font-size:10px}.info{grid-template-columns:1fr}.buttonbar{gap:5px}.btn{padding:8px 10px;font-size:11px;min-height:35px}.control-group{grid-template-columns:1fr}.arena-note{font-size:9px}.timebar{gap:7px}}
+:root{color-scheme:light;--ink:#193247;--muted:#607789;--paper:#f6f8fb;--white:#fff;--line:#dde6ed;--a:#2079b9;--b:#d57e39;--good:#137a66;--shadow:0 10px 30px rgba(42,74,106,.06)}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--ink);font-size:14px;line-height:1.45}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #91cfe8;outline-offset:2px}a{color:#226f9e;text-decoration:none}a:hover{text-decoration:underline}
+.shell{width:min(1370px,calc(100% - 38px));margin:23px auto 45px}.mast{display:flex;justify-content:space-between;align-items:flex-start;gap:12px 25px;flex-wrap:wrap;margin-bottom:20px}.eyebrow{font-size:10px;letter-spacing:1.6px;color:#71899b;font-weight:800;text-transform:uppercase}.author{font-size:12px;color:#526d81;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.author b{color:var(--ink)}h1{font-size:clamp(25px,3vw,37px);font-weight:780;letter-spacing:-.7px;line-height:1.2;margin:8px 0 5px}.sub{margin:0;color:var(--muted);font-size:14px;max-width:760px}.grid{display:grid;grid-template-columns:305px minmax(0,1fr);gap:16px;align-items:start}.card{background:var(--white);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.control-card{padding:19px 18px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.section-head h2{font-size:15px;margin:0;letter-spacing:-.2px}.muted{font-size:12px;color:var(--muted)}.ball-controls{border:1px solid var(--line);border-radius:12px;padding:14px 13px 12px;margin-top:11px;background:#fcfdff}.ball-controls.a{border-left:4px solid var(--a)}.ball-controls.b{border-left:4px solid var(--b)}.ball-title{font-size:13px;font-weight:750;margin-bottom:13px;display:flex;gap:8px;align-items:center}.dot{width:10px;height:10px;display:inline-block;border-radius:50%;background:var(--a)}.dot.b{background:var(--b)}.field{margin:11px 0 0}.field label{display:flex;align-items:baseline;justify-content:space-between;gap:6px;font-size:12px;font-weight:650;color:#466277}.field input[type=number]{background:#fff;color:#193247;border:1px solid #cedfe9;border-radius:8px;padding:6px 6px;width:86px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}.field input[type=range]{display:block;margin:9px 0 2px;width:100%;accent-color:var(--a);cursor:pointer}.ball-controls.b input[type=range]{accent-color:var(--b)}.actions{display:flex;gap:8px;margin-top:15px}.btn{border-radius:10px;border:1px solid #d3e0e9;color:#244e69;background:#f7fafc;font-weight:750;padding:11px 10px;flex:1;white-space:nowrap}.btn.primary{background:#2275a7;border-color:#2275a7;color:#fff}.btn:hover{filter:brightness(.975)}.speed-row{display:flex;gap:9px;justify-content:space-between;align-items:center;margin-top:14px;font-size:12px;color:var(--muted)}select{border:1px solid #cddfe9;border-radius:8px;background:#fff;color:var(--ink);padding:7px 9px}.control-foot{margin:12px 0 0;color:#738b9a;font-size:11px}.main-card{overflow:hidden}.main-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:19px 21px 12px;flex-wrap:wrap}.main-head h2{font-size:16px;margin:0 0 3px}.status{font-size:12px;border-radius:99px;padding:7px 10px;border:1px solid #d9e7ed;background:#f3f9fb;color:#486778;white-space:nowrap}.status.impact{background:#e9f6f0;border-color:#b8ddca;color:#176b50}.timebar{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:0 22px 4px;font-size:12px;color:#6d8392}.timebar strong{font-variant-numeric:tabular-nums;color:#34556a}.stage-scroll{overflow-x:auto;margin:0 16px 0;border:1px solid #dfe8ee;border-radius:13px;background:linear-gradient(#fff,#f9fbfe)}.stage{width:100%;min-width:620px;display:block;height:auto;touch-action:pan-x}.stage-help{font-size:11px;color:#8b9ca7;margin:6px 20px 0;display:none}.metrics{border-top:1px solid var(--line);padding:17px 21px 22px;margin-top:18px}.metrics h3{margin:0 0 13px;font-size:13px}.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.metric{background:#f8fafc;border:1px solid #e2eaf0;border-radius:11px;padding:12px 11px;min-width:0}.metric .caption{font-size:11px;color:#617b8e;margin:0 0 8px}.metric .num{font-size:clamp(16px,1.65vw,22px);font-variant-numeric:tabular-nums;font-weight:780;letter-spacing:-.4px;white-space:nowrap}.metric small{font-size:11px;font-weight:500;letter-spacing:0;color:#6f8594}.metric.a .num{color:var(--a)}.metric.b .num{color:var(--b)}.metric.total .num{color:var(--good)}.formulas{display:flex;gap:8px 24px;flex-wrap:wrap;color:#708897;font-size:12px;margin-top:13px}.formulas strong{color:#395a6d}.note{margin-top:16px;background:#fff;border:1px solid #e0e9ee;border-radius:13px;padding:15px 18px;color:#587182;font-size:12px;line-height:1.6}.note strong{color:#2c5369}.footer{font-size:11px;color:#8aa0ae;margin-top:15px;text-align:center}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:1080px){.grid{grid-template-columns:265px minmax(0,1fr)}.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:780px){.grid{grid-template-columns:1fr}.control-card{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.control-card>.section-head{grid-column:1/-1}.actions,.speed-row,.control-foot{grid-column:1/-1}.ball-controls{margin-top:0}.metric-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:610px){.shell{width:calc(100% - 24px);margin:16px auto 36px}.mast{margin-bottom:14px}.author{font-size:11px}.control-card{display:block;padding:14px}.ball-controls{margin-top:10px}.main-head{padding:16px 14px 10px}.stage-scroll{margin:0 10px}.stage-help{display:block}.timebar{padding:0 14px 7px}.metrics{padding:16px 13px 18px}.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.metric .num{font-size:20px}.note{font-size:11px}}
 </style>
 </head>
 <body>
 <div class="shell">
-  <div class="topline"><span class="tag">Laboratorio docente · Dinámica</span><div class="byline"><strong>Francisco Goitia</strong> · <a href="mailto:francisco.goitia@upc.edu">francisco.goitia@upc.edu</a></div></div>
-  <h1>Conservación de la cantidad de movimiento</h1>
-  <p class="intro">Modifica las masas y las velocidades de dos esferas. Reproduce una colisión frontal y observa cómo se redistribuye la cantidad de movimiento, manteniéndose constante la del sistema.</p>
-  <div class="workspace">
-    <aside class="side panel" aria-label="Parámetros de la simulación">
-      <div class="panel-title"><h2>Parámetros</h2><span class="micro">Sistema 1D</span></div>
-      <p class="micro">Velocidades positivas hacia la derecha. Puedes usar valores negativos para lanzarlas en sentidos opuestos.</p>
-      <section class="control-group">
-        <div class="grouphead"><span class="ball-dot"></span>Esfera A</div>
-        <div class="control"><div class="control-head"><label for="m1range">Masa <em>m</em><sub>A</sub></label><span class="valbox"><input id="m1num" type="number" min="0.2" max="10" step="0.1" value="2" aria-label="Masa de la esfera A"><span class="unit">kg</span></span></div><input class="range" id="m1range" aria-label="Ajustar masa de A" type="range" min="0.2" max="10" step="0.1" value="2"><div class="range-note"><span>0,2 kg</span><span>10 kg</span></div></div>
-        <div class="control"><div class="control-head"><label for="u1range">Velocidad inicial <em>u</em><sub>A</sub></label><span class="valbox"><input id="u1num" type="number" min="-5" max="5" step="0.1" value="3" aria-label="Velocidad inicial de la esfera A"><span class="unit">m/s</span></span></div><input class="range" id="u1range" aria-label="Ajustar velocidad de A" type="range" min="-5" max="5" step="0.1" value="3"><div class="range-note"><span>−5 m/s</span><span>+5 m/s</span></div></div>
-      </section>
-      <section class="control-group orange">
-        <div class="grouphead"><span class="ball-dot b"></span>Esfera B</div>
-        <div class="control"><div class="control-head"><label for="m2range">Masa <em>m</em><sub>B</sub></label><span class="valbox"><input id="m2num" type="number" min="0.2" max="10" step="0.1" value="2" aria-label="Masa de la esfera B"><span class="unit">kg</span></span></div><input class="range" id="m2range" aria-label="Ajustar masa de B" type="range" min="0.2" max="10" step="0.1" value="2"><div class="range-note"><span>0,2 kg</span><span>10 kg</span></div></div>
-        <div class="control"><div class="control-head"><label for="u2range">Velocidad inicial <em>u</em><sub>B</sub></label><span class="valbox"><input id="u2num" type="number" min="-5" max="5" step="0.1" value="0" aria-label="Velocidad inicial de la esfera B"><span class="unit">m/s</span></span></div><input class="range" id="u2range" aria-label="Ajustar velocidad de B" type="range" min="-5" max="5" step="0.1" value="0"><div class="range-note"><span>−5 m/s</span><span>+5 m/s</span></div></div>
-      </section>
-      <div class="rest">
-        <div class="rest-head"><h3>Tipo de colisión</h3><span class="eqmode" id="collisionType">Elástica</span></div>
-        <div class="control"><div class="control-head"><label for="erange">Coeficiente de restitución <em>e</em></label><span class="valbox"><input id="enum" type="number" min="0" max="1" step="0.05" value="1" aria-label="Coeficiente de restitución"><span class="unit"></span></span></div><input class="range" id="erange" aria-label="Ajustar coeficiente de restitución" type="range" min="0" max="1" step="0.05" value="1"><div class="range-note"><span>0 · Totalmente inelástica</span><span>1 · Elástica</span></div></div>
-        <div class="presets" aria-label="Ejemplos"><button type="button" data-preset="exchange">Masas iguales</button><button type="button" data-preset="heavy">Choque con masa mayor</button><button type="button" data-preset="headon">Choque frontal</button><button type="button" data-preset="stick">Inelástico total</button></div>
-        <p class="restdesc">En un sistema aislado se conserva el momento lineal total, incluso cuando se pierde energía cinética durante el choque.</p>
-      </div>
-    </aside>
-    <div class="main">
-      <section class="panel stage" aria-label="Animación de la colisión">
-        <div class="stage-head"><div><h2>Colisión de dos cuerpos</h2><p>Movimiento horizontal ideal, sin rozamiento ni fuerzas externas.</p></div><div class="status" id="status">Listo para iniciar</div></div>
-        <div class="arena">
-          <span class="arenalabel">Vista frontal · eje x</span><span class="arenaright">▶ x positivo</span>
-          <svg id="animation" viewBox="0 0 1000 365" role="img" aria-labelledby="sceneTitle sceneDesc" xmlns="http://www.w3.org/2000/svg">
-            <title id="sceneTitle">Dos esferas en movimiento horizontal</title><desc id="sceneDesc">Representación animada de una colisión unidimensional sobre una pista ideal.</desc>
-            <defs>
-              <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="#74b2ca" opacity=".085" stroke-width="1"/></pattern>
-              <linearGradient id="trackmetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#91bbca"/><stop offset=".4" stop-color="#29485a"/><stop offset="1" stop-color="#102737"/></linearGradient>
-              <radialGradient id="sphereA" cx="32%" cy="18%" r="92%"><stop offset="0" stop-color="#f2feff"/><stop offset=".19" stop-color="#7edbf1"/><stop offset=".45" stop-color="#15516b"/><stop offset=".63" stop-color="#112a3d"/><stop offset=".78" stop-color="#337f9d"/><stop offset="1" stop-color="#050e18"/></radialGradient>
-              <radialGradient id="sphereB" cx="32%" cy="18%" r="92%"><stop offset="0" stop-color="#fffdf0"/><stop offset=".19" stop-color="#ffda94"/><stop offset=".45" stop-color="#955830"/><stop offset=".63" stop-color="#3d292a"/><stop offset=".78" stop-color="#b88b5d"/><stop offset="1" stop-color="#13121a"/></radialGradient>
-              <linearGradient id="surfaceglint" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".82"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
-              <filter id="softGlow" x="-200%" width="500%" y="-200%" height="500%"><feGaussianBlur stdDeviation="12"/></filter>
-              <marker id="arrowA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#83e0f7"/></marker>
-              <marker id="arrowB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#ffd18a"/></marker>
-            </defs>
-            <rect width="1000" height="365" fill="url(#grid)"/>
-            <line x1="35" x2="965" y1="261" y2="261" stroke="#d6eefa" stroke-opacity=".17" stroke-dasharray="5 9"/>
-            <rect x="28" y="268" width="944" height="11" rx="5" fill="url(#trackmetal)" stroke="#7298a8" stroke-opacity=".38"/>
-            <line x1="28" x2="972" y1="267" y2="267" stroke="#e4f7fe" stroke-opacity=".38" stroke-width="2"/>
-            <g id="ticks" fill="#82a3b6" font-size="11" text-anchor="middle"></g>
-            <g id="flash" opacity="0"><ellipse id="flashEllipse" cx="500" cy="224" rx="46" ry="60" fill="#fff4bc" opacity=".55" filter="url(#softGlow)"/></g>
-            <g id="shadowA"><ellipse cx="0" cy="268" rx="47" ry="7" fill="#000" opacity=".5"/></g>
-            <g id="shadowB"><ellipse cx="0" cy="268" rx="47" ry="7" fill="#000" opacity=".5"/></g>
-            <g id="gA"><circle id="ballA" cx="0" cy="0" r="40" fill="url(#sphereA)" stroke="#84c2d7" stroke-width="1.1"/><ellipse id="glintA" cx="-13" cy="-15" rx="19" ry="8" transform="rotate(-20)" fill="url(#surfaceglint)" opacity=".82"/><text id="labelA" x="0" y="10" fill="#ebfdff" text-anchor="middle" font-size="22" font-weight="800">A</text></g>
-            <g id="gB"><circle id="ballB" cx="0" cy="0" r="40" fill="url(#sphereB)" stroke="#efca92" stroke-width="1.1"/><ellipse id="glintB" cx="-13" cy="-15" rx="19" ry="8" transform="rotate(-20)" fill="url(#surfaceglint)" opacity=".82"/><text id="labelB" x="0" y="10" fill="#fff8e8" text-anchor="middle" font-size="22" font-weight="800">B</text></g>
-            <g id="velA" fill="#a8e9fa"><line id="lineA" x1="0" y1="137" x2="0" y2="137" stroke="#83e0f7" stroke-width="3" marker-end="url(#arrowA)"/><text id="vlabelA" text-anchor="middle" y="126" font-size="14" font-weight="700"></text></g>
-            <g id="velB" fill="#ffdfab"><line id="lineB" x1="0" y1="137" x2="0" y2="137" stroke="#ffd18a" stroke-width="3" marker-end="url(#arrowB)"/><text id="vlabelB" text-anchor="middle" y="126" font-size="14" font-weight="700"></text></g>
-          </svg>
-          <div class="arena-note" id="arenaNote">Pulsa <strong>Reproducir</strong> para iniciar el experimento.</div>
-        </div>
-        <div class="stagecontrols">
-          <div class="buttonbar"><button class="btn primary" id="play">▶ Reproducir</button><button class="btn" id="restart">↺ Reiniciar</button><button class="btn" id="goBefore">Antes del choque</button><button class="btn" id="goAfter">Después del choque</button><label class="sr" for="speed">Velocidad de reproducción</label><select class="speedselect" id="speed"><option value="0.25">×0,25</option><option value="0.5">×0,5</option><option value="1" selected>×1</option><option value="2">×2</option></select></div>
-          <div class="timebar"><span class="timer" id="time">0,00 s</span><input id="scrub" class="range" type="range" min="0" max="1000" value="0" step="1" aria-label="Desplazar tiempo de simulación"><span class="timer" id="totalTime">6,50 s</span></div>
-        </div>
-        <div class="stagefoot">
-          <div class="kv"><div class="key">Velocidad A</div><div class="num a" id="currentA">+3,00 <small>m/s</small></div></div>
-          <div class="kv"><div class="key">Velocidad B</div><div class="num b" id="currentB">0,00 <small>m/s</small></div></div>
-          <div class="kv"><div class="key">Momento total <em>p</em></div><div class="num c" id="currentP">6,00 <small>kg·m/s</small></div></div>
-        </div>
-      </section>
-      <div class="info">
-        <section class="panel" aria-label="Tabla de resultados"><h3>Antes y después de la colisión</h3><table class="tablest"><thead><tr><th>Magnitud</th><th>Inicial</th><th>Final</th></tr></thead><tbody><tr><td><span class="tablehead"><i class="mini-dot"></i>Velocidad A</span></td><td id="u1out"></td><td id="v1out"></td></tr><tr><td><span class="tablehead"><i class="mini-dot b"></i>Velocidad B</span></td><td id="u2out"></td><td id="v2out"></td></tr><tr><td>Momento A</td><td id="p1i"></td><td id="p1f"></td></tr><tr><td>Momento B</td><td id="p2i"></td><td id="p2f"></td></tr><tr class="last"><td>Momento total</td><td id="pi"></td><td id="pf"></td></tr></tbody></table><p class="micro" style="margin:10px 0 0">Velocidad en m/s. Cantidad de movimiento en kg·m/s.</p></section>
-        <section class="panel" aria-label="Balance de energía"><h3>Balance de energía cinética</h3><div class="balances"><div class="balance-row"><span class="key">Antes</span><strong id="ki">9,00 J</strong><div class="bartrack"><div id="kibar" class="barfill" style="width:100%"></div></div></div><div class="balance-row"><span class="key">Después</span><strong id="kf">9,00 J</strong><div class="bartrack"><div id="kfbar" class="barfill energy" style="width:100%"></div></div></div><div class="balance-row"><span class="key">Energía disipada en el choque</span><strong id="kloss">0,00 J</strong><div class="bartrack"><div id="klossbar" class="barfill loss" style="width:0%"></div></div></div></div><p class="resultnote" id="conservation">El momento total se conserva.</p><p class="micro" id="collisionTime" style="margin:10px 0 0">Contacto previsto a los 1,35 s.</p></section>
-      </div>
-      <details class="panel derivation"><summary>Ver ecuaciones utilizadas</summary><div class="formula">p = m · v &nbsp;&nbsp; | &nbsp;&nbsp; p<sub>antes</sub> = p<sub>después</sub></div><div class="formula">m<sub>A</sub>u<sub>A</sub> + m<sub>B</sub>u<sub>B</sub> = m<sub>A</sub>v<sub>A</sub> + m<sub>B</sub>v<sub>B</sub></div><div class="formula">e = (v<sub>B</sub> − v<sub>A</sub>) / (u<sub>A</sub> − u<sub>B</sub>)</div><div class="formula">v<sub>A</sub> = [m<sub>A</sub>u<sub>A</sub> + m<sub>B</sub>u<sub>B</sub> − m<sub>B</sub>e(u<sub>A</sub> − u<sub>B</sub>)] / (m<sub>A</sub> + m<sub>B</sub>)</div><div class="formula">v<sub>B</sub> = [m<sub>A</sub>u<sub>A</sub> + m<sub>B</sub>u<sub>B</sub> + m<sub>A</sub>e(u<sub>A</sub> − u<sub>B</sub>)] / (m<sub>A</sub> + m<sub>B</sub>)</div><p class="explain">Estas expresiones corresponden al impacto frontal entre dos cuerpos con masas positivas, aproximación inicial u<sub>A</sub> &gt; u<sub>B</sub> y coeficiente de restitución entre 0 y 1. Si no existe encuentro, la aplicación mantiene las velocidades originales.</p></details>
+  <header class="mast">
+    <div>
+      <div class="eyebrow">Laboratorio docente · Mecánica</div>
+      <h1>Conservación del momentum</h1>
+      <p class="sub">Dos esferas, dos paredes y choques elásticos. Cambia las masas y las velocidades para observar cómo se transfiere la cantidad de movimiento.</p>
     </div>
-  </div>
-  <div class="footer"><strong>Francisco Goitia</strong> · Laboratorio docente de Dinámica y Mecánica. Simulación de impacto unidimensional entre esferas rígidas sobre una pista ideal. Se supone sistema aislado durante la colisión, sin rozamiento, rotación ni deformación permanente representada explícitamente. La energía cinética puede disminuir si e &lt; 1. Las esferas tienen tamaños gráficos aproximados según su masa, sin asumir una densidad material particular.</div>
+    <div class="author"><b>Francisco Goitia</b> <span>·</span> <a href="mailto:francisco.goitia@upc.edu">francisco.goitia@upc.edu</a></div>
+  </header>
+  <main class="grid">
+    <aside class="card control-card">
+      <div class="section-head"><h2>Condiciones iniciales</h2><span class="muted">Sistema 1D</span></div>
+      <section class="ball-controls a" aria-labelledby="ballATitle">
+        <div class="ball-title" id="ballATitle"><span class="dot"></span>Esfera A</div>
+        <div class="field"><label for="mA">Masa <input type="number" id="mANum" min="0.5" max="8" step="0.1" value="2" aria-label="Masa esfera A en kilogramos"></label><input id="mA" type="range" min="0.5" max="8" step="0.1" value="2" aria-label="Masa esfera A"><span class="sr-only">kilogramos</span></div>
+        <div class="field"><label for="vA">Velocidad inicial <input type="number" id="vANum" min="-4" max="4" step="0.1" value="2" aria-label="Velocidad inicial A en metros por segundo"></label><input id="vA" type="range" min="-4" max="4" step="0.1" value="2" aria-label="Velocidad inicial esfera A"></div>
+      </section>
+      <section class="ball-controls b" aria-labelledby="ballBTitle">
+        <div class="ball-title" id="ballBTitle"><span class="dot b"></span>Esfera B</div>
+        <div class="field"><label for="mB">Masa <input type="number" id="mBNum" min="0.5" max="8" step="0.1" value="1" aria-label="Masa esfera B en kilogramos"></label><input id="mB" type="range" min="0.5" max="8" step="0.1" value="1" aria-label="Masa esfera B"></div>
+        <div class="field"><label for="vB">Velocidad inicial <input type="number" id="vBNum" min="-4" max="4" step="0.1" value="-1.4" aria-label="Velocidad inicial B en metros por segundo"></label><input id="vB" type="range" min="-4" max="4" step="0.1" value="-1.4" aria-label="Velocidad inicial esfera B"></div>
+      </section>
+      <div class="actions"><button id="play" class="btn primary" type="button">▶ Iniciar</button><button id="reset" class="btn" type="button">↺ Reiniciar</button></div>
+      <div class="speed-row"><label for="speed">Velocidad de animación</label><select id="speed"><option value="0.5">0,5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></div>
+      <p class="control-foot">Modificar un valor reinicia la simulación. Los choques se consideran perfectamente elásticos.</p>
+    </aside>
+    <section class="card main-card" aria-label="Visualización y resultados">
+      <div class="main-head"><div><h2>Movimiento entre paredes</h2><div class="muted">Las flechas muestran dirección y velocidad de cada esfera</div></div><span class="status" id="status" role="status">Listo para iniciar</span></div>
+      <div class="timebar"><span>Distancia entre paredes: 10 m</span><span>Tiempo: <strong id="time">0,00 s</strong></span></div>
+      <div class="stage-scroll">
+        <svg class="stage" id="stage" viewBox="0 0 940 326" role="img" aria-label="Dos esferas que rebotan entre paredes y colisionan entre ellas">
+          <defs>
+            <radialGradient id="gradA" cx="32%" cy="26%" r="77%"><stop offset="0%" stop-color="#c7edfc"/><stop offset="45%" stop-color="#5aaad9"/><stop offset="100%" stop-color="#1b6096"/></radialGradient>
+            <radialGradient id="gradB" cx="32%" cy="26%" r="77%"><stop offset="0%" stop-color="#ffe9cd"/><stop offset="45%" stop-color="#e9a96a"/><stop offset="100%" stop-color="#bb642c"/></radialGradient>
+            <marker id="headA" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0L6 3L0 6" fill="#2479b7"/></marker>
+            <marker id="headB" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0L6 3L0 6" fill="#d57e39"/></marker>
+          </defs>
+          <path d="M70 118H870M70 250H870" fill="none" stroke="#e9f0f5" stroke-width="2" stroke-dasharray="5 9"/>
+          <rect x="58" y="92" width="12" height="175" rx="2" fill="#9eb4c4"/><rect x="870" y="92" width="12" height="175" rx="2" fill="#9eb4c4"/>
+          <path d="M56 92H80M56 267H80M860 92H884M860 267H884" stroke="#7892a4" stroke-width="3"/>
+          <line x1="70" y1="194" x2="870" y2="194" stroke="#e6edf3" stroke-width="1"/>
+          <g opacity=".48" stroke="#aabcc8" stroke-width="1"><path d="M70 277V283M150 277V282M230 277V283M310 277V282M390 277V283M470 277V282M550 277V283M630 277V282M710 277V283M790 277V282M870 277V283"/></g>
+          <g font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif" fill="#8fa3b1" text-anchor="middle"><text x="70" y="305">0</text><text x="230" y="305">2</text><text x="390" y="305">4</text><text x="550" y="305">6</text><text x="710" y="305">8</text><text x="870" y="305">10 m</text></g>
+          <g id="arrA"><line id="lineA" x1="0" y1="116" x2="0" y2="116" stroke="#2479b7" stroke-width="4" stroke-linecap="round" marker-end="url(#headA)"/><text id="labA" x="0" y="89" font-size="17" font-weight="700" fill="#2372ab" text-anchor="middle">vA</text></g>
+          <g id="arrB"><line id="lineB" x1="0" y1="116" x2="0" y2="116" stroke="#d57e39" stroke-width="4" stroke-linecap="round" marker-end="url(#headB)"/><text id="labB" x="0" y="89" font-size="17" font-weight="700" fill="#bd702f" text-anchor="middle">vB</text></g>
+          <g id="sphereA" transform="translate(270 194)"><ellipse cx="0" cy="30" rx="30" ry="7" fill="#8ebad3" opacity=".14"/><circle r="30.4" fill="url(#gradA)" stroke="#1b6599" stroke-width="1"/><path d="M-17 -17Q-7 -27 7 -20" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" opacity=".48"/><text text-anchor="middle" dy="6" font-size="19" font-weight="800" fill="#fff">A</text></g>
+          <g id="sphereB" transform="translate(670 194)"><ellipse cx="0" cy="30" rx="30" ry="7" fill="#ba895e" opacity=".15"/><circle r="30.4" fill="url(#gradB)" stroke="#ad662f" stroke-width="1"/><path d="M-17 -17Q-7 -27 7 -20" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" opacity=".52"/><text text-anchor="middle" dy="6" font-size="19" font-weight="800" fill="#fff">B</text></g>
+          <g font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif" text-anchor="middle" fill="#71899b"><text id="massA" x="270" y="242">2,0 kg</text><text id="massB" x="670" y="242">1,0 kg</text></g>
+        </svg>
+      </div>
+      <p class="stage-help">Desliza la pista horizontalmente para verla completa.</p>
+      <div class="metrics">
+        <h3>Valores instantáneos</h3>
+        <div class="metric-grid">
+          <div class="metric a"><div class="caption">Momento de A · p<sub>A</sub></div><div class="num" id="pA">+4,00 <small>kg·m/s</small></div></div>
+          <div class="metric b"><div class="caption">Momento de B · p<sub>B</sub></div><div class="num" id="pB">−1,40 <small>kg·m/s</small></div></div>
+          <div class="metric total"><div class="caption">Momento de las dos esferas</div><div class="num" id="pSum">+2,60 <small>kg·m/s</small></div></div>
+          <div class="metric"><div class="caption">Energía cinética total</div><div class="num" id="kinetic">4,98 <small>J</small></div></div>
+        </div>
+        <div class="formulas"><span><strong>p = m · v</strong> &nbsp; Momento lineal</span><span><strong>E<sub>c</sub> = ½mv²</strong> &nbsp; Energía cinética</span><span>Choques entre esferas: <strong id="hitCount">0</strong></span></div>
+      </div>
+    </section>
+  </main>
+  <div class="note"><strong>Para tener en cuenta:</strong> en cada choque entre las dos esferas se conserva su momento lineal total y, al ser elástico, también su energía cinética. Cuando una esfera rebota contra una pared, la pared ejerce un impulso externo: el momento total de las dos esferas puede cambiar. Se desprecia el rozamiento.</div>
+  <div class="footer">Francisco Goitia · Laboratorio docente de Mecánica de Materiales · Modelo unidimensional idealizado</div>
 </div>
 <script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
-const fmt=(n,d=2)=>(Math.abs(n)<Math.pow(10,-d)/2?0:n).toLocaleString('es-ES',{minimumFractionDigits:d,maximumFractionDigits:d});
-const signed=(n,d=2)=>(n>0.0000001?'+':'')+fmt(n,d);
-let model={m1:2,m2:2,u1:3,u2:0,e:1};
-let time=0,playing=false,prevFrame=0,playSpeed=1;
-const initialX1=-2.45,initialX2=2.45;
-function radii(){return [0.22+0.085*Math.cbrt(model.m1),0.22+0.085*Math.cbrt(model.m2)]}
-function physics(){const {m1,m2,u1,u2,e}=model,[r1,r2]=radii();const dv=u1-u2;const tc=dv>1e-8?(initialX2-initialX1-r1-r2)/dv:Infinity;const collision=Number.isFinite(tc)&&tc>=0;
-let v1=u1,v2=u2;if(collision){const total=m1+m2,p=m1*u1+m2*u2;v1=(p-m2*e*dv)/total;v2=(p+m1*e*dv)/total;}
-const pi=m1*u1+m2*u2,pf=m1*v1+m2*v2,ki=.5*m1*u1*u1+.5*m2*u2*u2,kf=.5*m1*v1*v1+.5*m2*v2*v2;
-const duration=collision?Math.min(65,Math.max(6.5,tc+3.5)):6.5;
-return {tc,collision,v1,v2,pi,pf,ki,kf,r1,r2,duration,loss:Math.max(0,ki-kf)};}
-function stateAt(t,p){const post=p.collision&&t>=p.tc;const dt=post?t-p.tc:0;
-const x1=initialX1+model.u1*(post?p.tc:t)+(post?p.v1*dt:0);
-const x2=initialX2+model.u2*(post?p.tc:t)+(post?p.v2*dt:0);
-return {x1,x2,vel1:post?p.v1:model.u1,vel2:post?p.v2:model.u2,post};}
-function circle(g,ball,r,pixelX,unit){const pxr=unit*r;g.setAttribute('transform',`translate(${pixelX.toFixed(3)},${(267-pxr).toFixed(3)})`);const c=g.querySelector('circle');c.setAttribute('r',pxr);const glow=g.querySelector('ellipse');glow.setAttribute('cx',-pxr*.28);glow.setAttribute('cy',-pxr*.35);glow.setAttribute('rx',pxr*.46);glow.setAttribute('ry',Math.max(2,pxr*.16));glow.setAttribute('transform','rotate(-20 '+(-pxr*.28)+' '+(-pxr*.35)+')');const txt=g.querySelector('text');txt.setAttribute('y',Math.max(6,pxr*.23));txt.setAttribute('font-size',Math.min(23,pxr*.58));}
-function velocityVector(which,center,v,other){const g=$('vel'+which),line=$('line'+which),label=$('vlabel'+which);const end=center+Math.sign(v)*Math.min(100,24+Math.abs(v)*15);line.setAttribute('x1',center);line.setAttribute('x2',Math.abs(v)<0.04?center:end);line.style.opacity=Math.abs(v)<0.04?0:.95;
-label.setAttribute('x',center+(Math.abs(v)<.04?0:(end-center)/2));label.textContent=(which==='A'?'vA':'vB')+' = '+signed(v,1)+' m/s';label.style.opacity=Math.abs(v)<.04?.8:1;}
-function renderScene(p,s){const maxSpan=Math.max(6,Math.abs(s.x1)+p.r1+.6,Math.abs(s.x2)+p.r2+.6);const unit=440/maxSpan,x1=500+s.x1*unit,x2=500+s.x2*unit;
-const svg=$('animation');
-if(window.matchMedia('(max-width:580px)').matches){
-  const visibleW=Math.max(720,Math.abs(x2-x1)+(p.r1+p.r2)*unit+130);
-  const cameraCenter=(x1+x2)/2;
-  svg.setAttribute('viewBox',`${cameraCenter-visibleW/2} 0 ${visibleW} 365`);
-}else svg.setAttribute('viewBox','0 0 1000 365');
-const gA=$('gA'),gB=$('gB');circle(gA,'A',p.r1,x1,unit);circle(gB,'B',p.r2,x2,unit);
-for(const [key,x,r] of [['A',x1,p.r1],['B',x2,p.r2]]){const sh=$('shadow'+key);sh.setAttribute('transform',`translate(${x.toFixed(2)} 0)`);sh.querySelector('ellipse').setAttribute('rx',Math.max(9,r*unit*.94));}
-velocityVector('A',x1,s.vel1,x2);velocityVector('B',x2,s.vel2,x1);
-const gap=Math.abs(s.x2-s.x1)-p.r1*unit-p.r2*unit;const nearing=p.collision&&Math.abs(time-p.tc)<.17;
-$('flash').setAttribute('opacity',nearing?String(.55*(1-Math.min(1,Math.abs(time-p.tc)/.17))):'0');$('flashEllipse').setAttribute('cx',(x1+x2)/2);
-const phase=!p.collision?'Sin colisión':nearing?'¡Impacto!':s.post?'Después del impacto':'Antes del impacto';$('status').textContent=phase;$('status').className='status'+(!p.collision?' no':s.post?' after':'');
-$('arenaNote').innerHTML=p.collision?(s.post?'Tras el choque, las esferas siguen con las velocidades calculadas.': 'Las flechas indican el <strong>sentido y módulo de la velocidad</strong>.'):'Las esferas <strong>no se alcanzan</strong> con estas velocidades iniciales.';
-$('currentA').innerHTML=signed(s.vel1)+' <small>m/s</small>';$('currentB').innerHTML=signed(s.vel2)+' <small>m/s</small>';$('currentP').innerHTML=signed(p.pi)+' <small>kg·m/s</small>';
+const L=10,R=.38,EPS=1e-10;
+const initial={mA:2,mB:1,vA:2,vB:-1.4};
+let cfg={...initial},sim,playing=false,lastFrame=0,playSpeed=1,noticeUntil=0;
+const px=x=>70+x*80;
+const dec=(v,d=2)=>v.toFixed(d).replace('.',',');
+const signed=(v,d=2)=>(Math.abs(v)<Math.pow(10,-d)/2?'':v>0?'+':'−')+dec(Math.abs(v),d);
+function init(){sim={xA:2.5,xB:7.5,vA:cfg.vA,vB:cfg.vB,t:0,hits:0,event:'Listo para iniciar'};playing=false;lastFrame=0;noticeUntil=0;render()}
+function advance(dt){let left=dt,loops=0;
+ while(left>EPS&&loops++<60){
+  let t=left+1,kind=null;
+  for(const [tag,x,v] of [['wallA',sim.xA,sim.vA],['wallB',sim.xB,sim.vB]]){
+    let tt=Infinity;
+    if(v < -EPS)tt=(R-x)/v;
+    else if(v>EPS)tt=(L-R-x)/v;
+    if(tt>=-1e-8&&tt<t){t=Math.max(0,tt);kind=tag;}
+  }
+  const approaching=sim.vA-sim.vB;
+  if(approaching>EPS){const tt=(sim.xB-sim.xA-2*R)/approaching;
+    if(tt>=-1e-8&&tt<t){t=Math.max(0,tt);kind='pair';}
+  }
+  if(t>left || !kind){sim.xA+=sim.vA*left;sim.xB+=sim.vB*left;sim.t+=left;left=0;break;}
+  sim.xA+=sim.vA*t;sim.xB+=sim.vB*t;sim.t+=t;left-=t;
+  if(kind==='pair'){
+    const u=sim.vA,w=sim.vB,m=cfg.mA,n=cfg.mB;
+    sim.vA=((m-n)*u+2*n*w)/(m+n);
+    sim.vB=(2*m*u+(n-m)*w)/(m+n);
+    sim.hits++;sim.event='Choque entre esferas';
+    const mid=(sim.xA+sim.xB)/2;sim.xA=mid-R;sim.xB=mid+R;
+  }else if(kind==='wallA'){
+    const side=sim.vA<0?'izquierda':'derecha';
+    sim.xA=side==='izquierda'?R:L-R;sim.vA=-sim.vA;sim.event='Rebote de A en pared '+side;
+  }else{
+    const side=sim.vB<0?'izquierda':'derecha';
+    sim.xB=side==='izquierda'?R:L-R;sim.vB=-sim.vB;sim.event='Rebote de B en pared '+side;
+  }
+  noticeUntil=sim.t+.64;
+ }
+ // Evita pequeñas desviaciones de coma flotante al dibujar.
+ sim.xA=Math.max(R,Math.min(L-R,sim.xA));sim.xB=Math.max(R,Math.min(L-R,sim.xB));
 }
-function show(){const p=physics();time=Math.max(0,Math.min(time,p.duration));const s=stateAt(time,p);renderScene(p,s);$('time').textContent=fmt(time)+' s';$('totalTime').textContent=fmt(p.duration)+' s';$('scrub').value=String(Math.round(time/p.duration*1000));$('goBefore').disabled=!p.collision||p.tc>p.duration;$('goAfter').disabled=!p.collision||p.tc>p.duration;
-$('play').textContent=playing?'Ⅱ Pausar':time>=p.duration?'▶ Repetir':'▶ Reproducir';}
-function showResults(){const p=physics();$('u1out').textContent=signed(model.u1);$('v1out').textContent=signed(p.v1);$('u2out').textContent=signed(model.u2);$('v2out').textContent=signed(p.v2);$('p1i').textContent=signed(model.m1*model.u1);$('p1f').textContent=signed(model.m1*p.v1);$('p2i').textContent=signed(model.m2*model.u2);$('p2f').textContent=signed(model.m2*p.v2);$('pi').textContent=signed(p.pi);$('pf').textContent=signed(p.pf);
-$('ki').textContent=fmt(p.ki)+' J';$('kf').textContent=fmt(p.kf)+' J';$('kloss').textContent=fmt(p.loss)+' J';const ratio=p.ki>1e-9?p.kf/p.ki:1;$('kibar').style.width='100%';$('kfbar').style.width=(Math.max(0,Math.min(1,ratio))*100)+'%';$('klossbar').style.width=(Math.max(0,Math.min(1,1-ratio))*100)+'%';
-$('collisionTime').textContent=p.collision?'Instante de contacto: '+fmt(p.tc)+' s.': 'Sin impacto: A no alcanza a B con las condiciones iniciales.';
-$('conservation').textContent=p.collision?(model.e===1?'Cantidad de movimiento y energía cinética conservadas.':'La cantidad de movimiento total se conserva. La pérdida de energía cinética depende de e.'): 'Sin choque, no hay intercambio de cantidad de movimiento.';
-$('collisionType').textContent=model.e>=.999?'Elástica':model.e<=.001?'Inelástica total':'Inelástica parcial';}
-function reset(){playing=false;time=0;prevFrame=0;showResults();show();}
-const ranges={m1:{min:.2,max:10},m2:{min:.2,max:10},u1:{min:-5,max:5},u2:{min:-5,max:5},e:{min:0,max:1}};
-function syncAll(){for(const key in model){$(key+'range').value=String(model[key]);$(key+'num').value=String(model[key])}reset()}
-for(const key of Object.keys(model)){const range=$(key+'range'),num=$(key+'num'),bounds=ranges[key];const accept=v=>{if(!Number.isFinite(v))return;model[key]=Math.max(bounds.min,Math.min(bounds.max,v));range.value=String(model[key]);num.value=String(model[key]);reset();};range.addEventListener('input',()=>accept(Number(range.value)));num.addEventListener('change',()=>accept(Number(num.value)));num.addEventListener('keydown',e=>{if(e.key==='Enter'){num.blur();}})}
-const presets={exchange:{m1:2,m2:2,u1:3,u2:0,e:1},heavy:{m1:1,m2:5,u1:4,u2:0,e:1},headon:{m1:2,m2:2,u1:3,u2:-2,e:1},stick:{m1:3,m2:1,u1:3,u2:0,e:0}};
-document.querySelectorAll('[data-preset]').forEach(el=>el.addEventListener('click',()=>{model={...presets[el.dataset.preset]};syncAll()}));
-$('restart').addEventListener('click',reset);$('play').addEventListener('click',()=>{const duration=physics().duration;if(!playing&&time>=duration-1e-6)time=0;playing=!playing;prevFrame=0;show()});
-$('goBefore').addEventListener('click',()=>{const p=physics();if(!p.collision)return;playing=false;time=Math.max(0,p.tc-.28);show()});
-$('goAfter').addEventListener('click',()=>{const p=physics();if(!p.collision)return;playing=false;time=Math.min(p.duration,p.tc+.35);show()});
-$('scrub').addEventListener('input',e=>{playing=false;time=Number(e.target.value)/1000*physics().duration;show()});
-$('speed').addEventListener('change',e=>{playSpeed=Number(e.target.value)||1});
-function frame(now){if(playing){if(prevFrame){time+=Math.min(.06,(now-prevFrame)/1000)*playSpeed;const duration=physics().duration;if(time>=duration){time=duration;playing=false}}prevFrame=now;show();}else prevFrame=0;requestAnimationFrame(frame)}
-syncAll();requestAnimationFrame(frame);
+function arrow(id,x,v){
+ const line=$('line'+id),lab=$('lab'+id),xp=px(x),m=Math.abs(v);
+ const width=Math.min(72,m*22);
+ const dir=v<0?-1:1;
+ if(m<.04){line.style.visibility='hidden'}else{line.style.visibility='visible';line.setAttribute('x1',xp);line.setAttribute('x2',xp+dir*width)}
+ lab.setAttribute('x',xp);lab.textContent='v'+id+' = '+signed(v,1)+' m/s';
+}
+function metric(id,value,unit){$(id).innerHTML=signed(value)+' <small>'+unit+'</small>'}
+function render(){
+ $('sphereA').setAttribute('transform',`translate(${px(sim.xA)} 194)`);
+ $('sphereB').setAttribute('transform',`translate(${px(sim.xB)} 194)`);
+ $('massA').setAttribute('x',px(sim.xA));$('massA').textContent=dec(cfg.mA,1)+' kg';
+ $('massB').setAttribute('x',px(sim.xB));$('massB').textContent=dec(cfg.mB,1)+' kg';
+ arrow('A',sim.xA,sim.vA);arrow('B',sim.xB,sim.vB);
+ metric('pA',cfg.mA*sim.vA,'kg·m/s');metric('pB',cfg.mB*sim.vB,'kg·m/s');
+ metric('pSum',cfg.mA*sim.vA+cfg.mB*sim.vB,'kg·m/s');
+ $('kinetic').innerHTML=dec(.5*cfg.mA*sim.vA**2+.5*cfg.mB*sim.vB**2)+' <small>J</small>';
+ $('time').textContent=dec(sim.t)+' s';$('hitCount').textContent=sim.hits;
+ const isNotice=sim.t<noticeUntil;
+ $('status').textContent=isNotice?sim.event:playing?'En movimiento':sim.t>0?'Pausado':'Listo para iniciar';
+ $('status').classList.toggle('impact',isNotice);
+ $('play').textContent=playing?'❚❚ Pausar':'▶ '+(sim.t>0?'Continuar':'Iniciar');
+}
+function binding(key,min,max){
+ const range=$(key),num=$(key+'Num');
+ const set=(raw)=>{
+  const parsed=Number(raw);if(!Number.isFinite(parsed))return;
+  const val=Math.max(min,Math.min(max,Math.round(parsed*10)/10));
+  cfg[key]=val;range.value=val;num.value=val;init();
+ };
+ range.addEventListener('input',()=>set(range.value));
+ num.addEventListener('change',()=>set(num.value));
+ num.addEventListener('keydown',ev=>{if(ev.key==='Enter')num.blur()});
+}
+binding('mA',.5,8);binding('mB',.5,8);binding('vA',-4,4);binding('vB',-4,4);
+$('play').addEventListener('click',()=>{playing=!playing;lastFrame=0;render()});
+$('reset').addEventListener('click',()=>init());
+$('speed').addEventListener('change',()=>{playSpeed=Number($('speed').value)||1});
+function frame(now){if(playing){if(lastFrame){advance(Math.min((now-lastFrame)/1000,.05)*playSpeed)}lastFrame=now;render()}else lastFrame=0;requestAnimationFrame(frame)}
+init();requestAnimationFrame(frame);
+// Interfaz de pruebas manuales: disponible desde la consola para comprobar conservación.
+window.momentumApp={snapshot:()=>({...sim,mA:cfg.mA,mB:cfg.mB}),setConditions:(params)=>{for(const k of ['mA','mB','vA','vB'])if(k in params){cfg[k]=Number(params[k]);$(k).value=cfg[k];$(k+'Num').value=cfg[k]}init()},step:(seconds)=>{advance(Math.max(0,Number(seconds)));render()}};
 })();
 </script>
 </body>
